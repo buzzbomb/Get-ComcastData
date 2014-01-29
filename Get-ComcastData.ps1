@@ -35,6 +35,7 @@ $pattern="([0-9]{1,3}GB of [0-9]{1,3}GB as of (January|Febuary|March|April|May|J
 $fileLocation="$env:userprofile\My Documents\comcastPull.txt"
 $username = "<sample email>@outlook.com" 
 $password = "<password>" 
+$url="https://customer.comcast.com/Secure/MyServices/"
 $ie = New-Object -com InternetExplorer.Application 
 $ie.visible=$false
 $ie.navigate($url) 
