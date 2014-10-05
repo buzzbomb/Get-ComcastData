@@ -1,33 +1,32 @@
-﻿   clear-host
-    ##THis is mastter twos edit
+
 Function Send-Email ($data)
 { 
-$time=Get-Date
-#$cap="300"
-#$remainder= $cap - $dataUsed
-
-$emailSmtpServer = "smtp.live.com" 
-$emailSmtpServerPort = "587"
-$emailSmtpUser =  "<sample email>@outlook.com"
-$emailSmtpPass = "<password>"
- 
-$emailFrom =  "<sample email>@outlook.com"
-$emailTo =  "<sample email>@outlook.com"
- 
-$emailMessage = New-Object System.Net.Mail.MailMessage( $emailFrom , $emailTo )
-$emailMessage.Subject = "Data usage results for $time"
-$emailMessage.IsBodyHtml = $true
-$emailMessage.Body = @"
-<p>You have used<strong> $data </strong>GB of your<strong> $cap </strong>GB cap.</p>
-<p>There are <insert maths>GBs remaining.</p>
-<p>At your current rate of consumption you have <insert maths> days left before hitting the pay cap.</P>
-"@
- 
-$SMTPClient = New-Object System.Net.Mail.SmtpClient( $emailSmtpServer , $emailSmtpServerPort )
-$SMTPClient.EnableSsl = $true
-$SMTPClient.Credentials = New-Object System.Net.NetworkCredential( $emailSmtpUser , $emailSmtpPass );
- 
-$SMTPClient.Send( $emailMessage )
+    $time=Get-Date
+    #$cap="300"
+    #$remainder= $cap - $dataUsed
+    
+    $emailSmtpServer = "smtp.live.com" 
+    $emailSmtpServerPort = "587"
+    $emailSmtpUser =  "<sample email>@outlook.com"
+    $emailSmtpPass = "<password>"
+     
+    $emailFrom =  "<sample email>@outlook.com"
+    $emailTo =  "<sample email>@outlook.com"
+     
+    $emailMessage = New-Object System.Net.Mail.MailMessage( $emailFrom , $emailTo )
+    $emailMessage.Subject = "Data usage results for $time"
+    $emailMessage.IsBodyHtml = $true
+    $emailMessage.Body = @"
+        <p>You have used<strong> $data </strong>GB of your<strong> $cap </strong>GB cap.</p>
+        <p>There are <insert maths>GBs remaining.</p>
+        <p>At your current rate of consumption you have <insert maths> days left before hitting the pay cap.</P>
+        "@
+     
+    $SMTPClient = New-Object System.Net.Mail.SmtpClient( $emailSmtpServer , $emailSmtpServerPort )
+    $SMTPClient.EnableSsl = $true
+    $SMTPClient.Credentials = New-Object System.Net.NetworkCredential( $emailSmtpUser , $emailSmtpPass );
+     
+    $SMTPClient.Send( $emailMessage )
 } 
 
 
