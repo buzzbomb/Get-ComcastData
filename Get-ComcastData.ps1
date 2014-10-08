@@ -69,7 +69,7 @@ function Get-DataUsage($username, $password){
 
     $pattern="([0-9]{1,3}GB of [0-9]{1,3}GB as of (January|Febuary|March|April|May|June|July|August|September|October|November|December) [0-9]{1,2}\, [0-9]{4})"
 
-    $url="https://customer.comcast.com/Secure/MyServices/"
+    $url="https://customer.comcast.com/MyServices/Internet"
     $ie = New-Object -com InternetExplorer.Application 
     $ie.visible=$false
     $ie.navigate($url) 
@@ -77,7 +77,7 @@ function Get-DataUsage($username, $password){
     $ie.document.getElementById("user").value= "$username" 
     $ie.document.getElementById("passwd").value = "$password" 
     $ie.document.getElementById("signin").submit()
-    start-sleep 20
+    start-sleep 20 #Waits for their ajax load
     $dataUsed = ((($ie.document.body.innerText| Select-String -Pattern $pattern) -split " " | Select-Object -first 1) -split "GB")
 
     if($dataUsed)
