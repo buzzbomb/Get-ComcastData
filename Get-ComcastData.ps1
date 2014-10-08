@@ -103,7 +103,7 @@ $emailFrom =  "<sample email>@outlook.com"
 $emailTo =  "<sample email>@outlook.com"
 $subject = "Data usage results for $time"
 
-if($pulledContent)
+if($dataUsed)
 {
     $body = @"
         <p>You have used<strong> $dataUsed </strong>GB of your<strong> $cap </strong>GB cap.</p>
